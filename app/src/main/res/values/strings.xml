@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">HeadFirstAndroid</string>
+    <string name="etxt_to">To</string>
+    <string name="etxt_message">Message</string>
+    <string name="btn_send">Send</string>
 </resources>

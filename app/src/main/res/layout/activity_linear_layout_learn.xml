@@ -3,8 +3,52 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="18dp"
     tools:context=".linearLayoutLearn">
 
+
+    <EditText
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        android:hint="@string/etxt_to"
+        android:inputType="text">
+    </EditText>
+
+    <EditText
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:gravity="top"
+        android:textSize="18sp"
+        android:hint="@string/etxt_message"
+        android:inputType="textMultiLine">
+    </EditText>
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/btn_send"
+        android:textSize="18sp"
+        android:layout_gravity="end">
+
+    </Button>
+
+
 </LinearLayout>
+
+
+
+<!--Варианты-->
+    <!--    android:paddingBottom="16dp"-->
+    <!--    android:paddingStart="16dp"-->
+    <!--    android:paddingEnd="16dp"-->
+    <!--    android:paddingTop="30dp"-->
+
+    <!--    android:paddingHorizontal="18dp"-->
+    <!--    android:paddingVertical="18dp"-->
