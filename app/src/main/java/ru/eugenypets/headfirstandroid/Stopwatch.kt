@@ -13,6 +13,11 @@ class Stopwatch : AppCompatActivity() {
     var running = false  // статус работы секундомера
     var offset: Long = 0
 
+    // Добавление строк для ключей, используемых с Bundle
+    val OFFSET_KEY = "offset"
+    val RUNNING_KEY = "running"
+    val BASE_KEY = "base"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +28,19 @@ class Stopwatch : AppCompatActivity() {
         До этого представление Chronometer не существует.
         */
         stopwatch = findViewById<Chronometer>(R.id.stopwatch)
+
+
+        //Восстановление предыдущего состояния
+        if (savedInstanceState != null) {
+            // Восстановить состояние offset и running
+            offset = savedInstanceState.getLong(OFFSET_KEY)
+            running = savedInstanceState.getBoolean(RUNNING_KEY)
+
+            if (running) {
+                stopwatch.base = savedInstanceState.getLong(BASE_KEY)
+                stopwatch.start()
+            } else setBaseTime()
+        }
 
         // Кнопка start запускает секундомер, если он не работал
         var startButton = findViewById<Button>(R.id.btn_start)
@@ -52,6 +70,18 @@ class Stopwatch : AppCompatActivity() {
             setBaseTime()
         }
 
+    }
+
+//  Метод  onSaveInstanceState
+//  используется  для сохранения свойств offset, running и stopwatch.base.
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putLong(OFFSET_KEY, offset)
+        outState.putBoolean(RUNNING_KEY, running)
+        outState.putLong(BASE_KEY, stopwatch.base)
+        super.onSaveInstanceState(outState)
+    }
+
+
     /*
     Метод start() запускает отсчет от базового времени
     Метод stop() Приостанавливает отсчет времени хронометром
@@ -60,9 +90,6 @@ class Stopwatch : AppCompatActivity() {
     прошедшее с момента загрузки устройства.
     Если присвоить свойству base это значение, выводимое время обнуляется.
     */
-
-    }
-
 
     // Обновляет время stopwatch.base
     private fun setBaseTime() {
